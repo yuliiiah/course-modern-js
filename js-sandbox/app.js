@@ -1,23 +1,52 @@
-// Log to console
-console.log('Hello World');
-console.log(123);
-console.log(true);
-var greeting = 'Hello';
+// var, let, const
+
+var name = 'John Doe';
+console.log(name);
+name = 'Steve Smith';
+console.log(name);
+
+// Init var
+var greeting;
 console.log(greeting);
-console.log([1, 2, 3, 4]);
-console.log({ a: 1, b: 2 });
-console.table({ a: 1, b: 2 });
-console.error('This is some error');
-console.clear();
-console.warn('This is a warning');
-console.time('Hello');
-console.log('Hello World');
-console.log('Hello World');
-console.log('Hello World');
-console.log('Hello World');
-console.log('Hello World');
-console.log('Hello World');
-console.log('Hello World');
-console.log('Hello World');
-console.log('Hello World');
-console.timeEnd('Hello');
+greeting = 'Hello';
+console.log(greeting);
+
+// letters, numbers, _ (private variables), $ (only with jquery)
+// cannot start with a number
+
+// multi-word variables
+var firstName = 'John'; // Camel case — suggested for regular vars
+var first_name = 'Jane'; // Underscore
+var FirstName = 'Sara'; // Pascal case
+var firstname;
+
+// LET
+let name;
+name = 'John Doe';
+console.log(name);
+name = 'Steve Smith';
+console.log(name);
+
+// CONST
+const name = 'John';
+console.log(name);
+// Cannot reassign
+name = 'Sara';
+// Have to assign a value
+const greeting;
+
+const person = {
+  name: 'John',
+  age: 30,
+};
+
+person.name = 'Sara';
+person.age = '32';
+
+// console.log(person);
+
+const numbers = [1, 2, 3, 4, 5];
+numbers.push(6);
+// numbers = [1, 2, 3, 4, 5, 6];
+
+console.log(numbers);
