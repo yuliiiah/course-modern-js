@@ -1,29 +1,42 @@
-// Global scope
-var a = 1;
-let b = 2;
-const c = 3;
+let val;
 
-// function test() {
-//   var a = 4;
-//   let b = 5;
-//   const c = 6;
+val = document;
 
-//   console.log(`Function Scope: ${a}, ${b}, ${c}`);
-// }
+val = document.all;
+val = document.all[1];
+val = document.all.length;
+val = document.head;
+val = document.body;
+val = document.doctype;
+val = document.domain;
+val = document.URL;
+val = document.characterSet;
+val = document.contentType;
 
-// test();
+val = document.forms;
+val = document.forms[0];
+val = document.forms[0].id;
+val = document.forms[0].method;
+val = document.forms[0].action;
 
-// if (true) {
-//   // Block Scope
-//   var a = 4;
-//   let b = 5;
-//   const c = 6;
+val = document.links;
+val = document.links[0];
+val = document.links[0].id;
+val = document.links[0].className;
+val = document.links[0].classList;
+val = document.links[0].classList[0];
 
-//   console.log(`If Scope: ${a}, ${b}, ${c}`);
-// }
+val = document.images;
 
-// for (var a = 0; a < 10; a++) {
-//   console.log(`Loop: ${a}`);
-// }
+val = document.scripts;
+val = document.scripts[2].getAttribute('src');
 
-console.log(`Global Scope: ${a}, ${b}, ${c}`);
+let scripts = document.scripts;
+
+let scriptsArray = Array.from(scripts);
+
+scriptsArray.forEach(function (script) {
+  console.log(script.getAttribute('src'));
+});
+
+console.log(val);
