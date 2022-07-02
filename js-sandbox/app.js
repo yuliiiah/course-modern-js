@@ -1,57 +1,59 @@
-// document.getElementsByClassName
+let val;
 
-// const items = document.getElementsByClassName('collection-item');
+const list = document.querySelector('ul.collection');
+const listItem = document.querySelector('li.collection-item:first-child');
 
-// console.log(items);
-// console.log(items[0]);
+val = listItem;
+val = list;
 
-// items[0].style.color = 'red';
-// items[3].textContent = 'Hello';
+// Get child nodes
 
-// const listItems = document
-//   .querySelector('ul')
-//   .getElementsByClassName('collection-item');
+val = list.childNodes;
+val = list.childNodes[0];
+val = list.childNodes[0].nodeName;
+val = list.childNodes[1].nodeType;
 
-// console.log(listItems);
+// 1 — Element
+// 2 — Attribute (deprecated)
+// 3 — Text node
+// 8 — Comment
+// 9 — Document itself
+// 10 — DocType
 
-// document.getElementsByTagName
-// let lis = document.getElementsByTagName('li');
+// Get children element nodes
 
-// console.log(lis);
-// console.log(lis[0]);
+val = list.children;
+val = list.children[2];
+val = list.children[2].textContent = 'Hello';
 
-// lis[0].style.color = 'red';
-// lis[3].textContent = 'Hello';
+// Get children of children
 
-// // Convert HTML collection into array
+val = list.children[3].children[0].id = 'test-link';
 
-// lis = Array.from(lis);
+// First child
 
-// lis.reverse();
-// lis.forEach((li, index) => {
-//   console.log(li.className);
-//   li.textContent = `${index} : Hello`;
-// });
+val = list.firstChild;
+val = list.firstElementChild;
 
-// console.log(lis);
+// Last child
 
-// document.querySelectorAll
+val = list.lastChild;
+val = list.lastElementChild;
 
-const items = document.querySelectorAll('ul.collection li.collection-item');
+// Count child elements
+val = list.childElementCount;
 
-items.forEach(function (item, index) {
-  item.textContent = `${index} : Hello`;
-});
+// Get parent node
+val = listItem.parentNode;
+val = listItem.parentElement;
+val = listItem.parentElement.parentElement;
 
-const liOdd = document.querySelectorAll('li:nth-child(odd)');
-const liEven = document.querySelectorAll('li:nth-child(even)');
+// Get next sibling
+val = listItem.nextSibling;
+val = listItem.nextElementSibling.nextElementSibling;
 
-liOdd.forEach(function (li, index) {
-  li.style.background = '#ccc';
-});
+// Get previous sibling
+val = listItem.previousSibling;
+val = listItem.previousElementSibling;
 
-for (let i = 0; i < liEven.length; i++) {
-  liEven[i].style.background = '#f4f4f4';
-}
-
-console.log(items);
+console.log(val);
