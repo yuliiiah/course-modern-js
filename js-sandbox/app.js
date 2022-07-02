@@ -1,42 +1,38 @@
-let val;
+// // document.getElementById()
 
-val = document;
+// console.log(document.getElementById('task-title'));
 
-val = document.all;
-val = document.all[1];
-val = document.all.length;
-val = document.head;
-val = document.body;
-val = document.doctype;
-val = document.domain;
-val = document.URL;
-val = document.characterSet;
-val = document.contentType;
+// // Get things from the element
 
-val = document.forms;
-val = document.forms[0];
-val = document.forms[0].id;
-val = document.forms[0].method;
-val = document.forms[0].action;
+// console.log(document.getElementById('task-title').id);
+// console.log(document.getElementById('task-title').className);
 
-val = document.links;
-val = document.links[0];
-val = document.links[0].id;
-val = document.links[0].className;
-val = document.links[0].classList;
-val = document.links[0].classList[0];
+// const taskTitle = document.getElementById('task-title');
 
-val = document.images;
+// // Change styling
 
-val = document.scripts;
-val = document.scripts[2].getAttribute('src');
+// taskTitle.style.background = '#333';
+// taskTitle.style.color = '#fff';
+// taskTitle.style.padding = '5px';
+// // taskTitle.style.display = 'none';
 
-let scripts = document.scripts;
+// // Change content
 
-let scriptsArray = Array.from(scripts);
+// taskTitle.textContent = 'Task List';
+// taskTitle.innerText = 'My Tasks';
+// taskTitle.innerHTML = '<span style="color: red">Task List</span>';
 
-scriptsArray.forEach(function (script) {
-  console.log(script.getAttribute('src'));
-});
+// document.querySelector();
 
-console.log(val);
+console.log(document.querySelector('#task-title'));
+console.log(document.querySelector('.card-title'));
+console.log(document.querySelector('h5'));
+
+document.querySelector('li').style.color = 'red';
+document.querySelector('ul li').style.color = 'blue';
+
+document.querySelector('li:last-child').style.color = 'blue';
+document.querySelector('li:nth-child(3)').style.color = 'yellow';
+document.querySelector('li:nth-child(4)').textContent = 'Hello World';
+document.querySelector('li:nth-child(odd)').style.background = '#ccc';
+document.querySelector('li:nth-child(even)').style.background = '#f4f4f4';
