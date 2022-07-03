@@ -1,30 +1,51 @@
-// Create element
+// REPLACE ELEMENT
 
-const li = document.createElement('li');
+// Create Element
+const newHeading = document.createElement('h2');
+// Add ID
+newHeading.id = 'task-title';
+// New text node
+newHeading.appendChild(document.createTextNode('Task List'));
 
-// Add class
-li.className = 'collection-item';
+// Get the old heading
+const oldHeading = document.getElementById('task-title');
+// Parent
+const cardAction = document.querySelector('.card-action');
 
-// Add id
-li.id = 'new-item';
+// Replace
+cardAction.replaceChild(newHeading, oldHeading);
 
-// Add attribute
-li.setAttribute('title', 'New Item');
+// REMOVE ELEMENT
+const lis = document.querySelectorAll('li');
+const list = document.querySelector('ul');
 
-// Create text node and append
-li.appendChild(document.createTextNode('Hello World'));
+// Remove list item
+lis[0].remove();
 
-// Create new link element
-const link = document.createElement('a');
-// Add classes
-link.className = 'delete-item secondary-content';
-// Add icon html
-link.innerHTML = '<i class="fa fa-remove"></i>';
+// Remove child element
+list.removeChild(lis[3]);
 
-// Append link into li
-li.appendChild(link);
+// CLASSES AND ATTR
+const firstLi = document.querySelector('li:first-child');
+const link = firstLi.children[0];
 
-// Append li as child to ul
-document.querySelector('ul.collection').appendChild(li);
+let val;
 
-console.log(li);
+// Classes
+val = link.className;
+val = link.classList;
+val = link.classList[0];
+
+link.classList.add('test');
+link.classList.remove('test');
+val = link;
+
+// Attributes
+val = link.getAttribute('href');
+val = link.setAttribute('href', 'https://google.com');
+link.setAttribute('title', 'Google');
+val = link.hasAttribute('title');
+val = link;
+link.removeAttribute('title');
+
+console.log(val);
