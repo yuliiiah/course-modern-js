@@ -1,51 +1,40 @@
-// REPLACE ELEMENT
+// document.querySelector('.clear-tasks').addEventListener('click', function (e) {
+//   console.log('Hello World!');
 
-// Create Element
-const newHeading = document.createElement('h2');
-// Add ID
-newHeading.id = 'task-title';
-// New text node
-newHeading.appendChild(document.createTextNode('Task List'));
+//   // e.preventDefault();
+// });
 
-// Get the old heading
-const oldHeading = document.getElementById('task-title');
-// Parent
-const cardAction = document.querySelector('.card-action');
+document.querySelector('.clear-tasks').addEventListener('click', onClick);
 
-// Replace
-cardAction.replaceChild(newHeading, oldHeading);
+function onClick(e) {
+  // console.log('Clicked');
+  e.preventDefault();
 
-// REMOVE ELEMENT
-const lis = document.querySelectorAll('li');
-const list = document.querySelector('ul');
+  let val;
 
-// Remove list item
-lis[0].remove();
+  val = e;
 
-// Remove child element
-list.removeChild(lis[3]);
+  // Event target element
+  val = e.target;
+  val = e.target.id;
+  val = e.target.className;
+  val = e.target.classList;
 
-// CLASSES AND ATTR
-const firstLi = document.querySelector('li:first-child');
-const link = firstLi.children[0];
+  e.target.innerText = 'Hello';
 
-let val;
+  // Event type
+  val = e.type;
 
-// Classes
-val = link.className;
-val = link.classList;
-val = link.classList[0];
+  // Timestamp
+  val = e.timeStamp;
 
-link.classList.add('test');
-link.classList.remove('test');
-val = link;
+  // Coordinates of the event relative to the window
+  val = e.clientY;
+  val = e.clientX;
 
-// Attributes
-val = link.getAttribute('href');
-val = link.setAttribute('href', 'https://google.com');
-link.setAttribute('title', 'Google');
-val = link.hasAttribute('title');
-val = link;
-link.removeAttribute('title');
+  // Coordinates of the event relative to the element
+  val = e.offsetY;
+  val = e.offsetX;
 
-console.log(val);
+  console.log(val);
+}
