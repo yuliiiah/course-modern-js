@@ -10,7 +10,7 @@ GAME FUNCTION:
 // Game values
 let min = 1,
   max = 10,
-  winningNum = 2,
+  winningNum = getRandomNum(min, max),
   guessesLeft = 3;
 
 // UI elements
@@ -24,6 +24,13 @@ const game = document.querySelector('#game'),
 // Assign UI min and max
 minNum.textContent = min;
 maxNum.textContent = max;
+
+// Play again event listener
+game.addEventListener('mousedown', function (e) {
+  if (e.target.className === 'play-again') {
+    window.location.reload();
+  }
+});
 
 // Listen for guess
 guessBtn.addEventListener('click', function () {
@@ -50,8 +57,13 @@ guessBtn.addEventListener('click', function () {
       );
     } else {
       // Game continues - WRONG ANSWER
-      gameWon(false, `${guess} is not correct. Guesses left: ${guessesLeft}.`);
-      guessInput.disabled = false;
+      // Change border color
+      guessInput.style.borderColor = 'red';
+      // Set message
+      setMessage(
+        `${guess} is not correct. Guesses left: ${guessesLeft}.`,
+        'red'
+      );
     }
   }
 });
@@ -68,6 +80,15 @@ function gameWon(won, msg) {
 
   // Set message
   setMessage(msg, color);
+
+  // Play again?
+  guessBtn.value = 'Play again?';
+  guessBtn.className += 'play-again';
+}
+
+// Get winning number
+function getRandomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // Set message
