@@ -1,42 +1,31 @@
-// const sayHello = function () {
-//   console.log('Hello');
-// };
+// async function myFunc() {
+//   const promise = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve('Hello');
+//     }, 1000);
+//   });
 
-// const sayHello = () => {
-//   console.log('Hello');
-// };
+//   const err = false;
 
-// One-line function doesn't need braces
-// const sayHello = () => console.log('HELLO');
+//   if (!err) {
+//     const res = await promise; // Wait until the promise is resolved
+//     return res;
+//   } else {
+//     await Promise.reject(new Error('Something went wrong...'));
+//   }
+// }
 
-// One-line returns
-// const sayHello = () => 'Hello';
+// myFunc()
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
 
-// Return object
-// const sayHello = () => ({ msg: 'Hello' });
+async function getUsers() {
+  // Await the response of the fetch call
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  // Only proceed once the response is resolved
+  const data = await response.json();
+  // Only proceed once the second promise is resolved
+  return data;
+}
 
-// Single param doesn't need parenthesis (but Prettier thinks otherwise)
-// const sayHello = (name) => console.log(`Hello, ${name}`);
-
-// Multiple params need parenthesis
-// const sayHello = (firstName, lastName) =>
-//   console.log(`Hello, ${firstName} ${lastName}`);
-
-// console.log(sayHello());
-// sayHello('Yuliia', 'Horbenko');
-
-const users = ['Nathan', 'John', 'Will'];
-
-// const nameLengths = users.map(function (name) {
-//   return name.length;
-// });
-
-// Shorter
-// const nameLengths = users.map((name) => {
-//   return name.length;
-// });
-
-// Shortest
-const nameLengths = users.map((name) => name.length);
-
-console.log(nameLengths);
+getUsers().then((users) => console.log(users));
