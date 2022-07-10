@@ -1,58 +1,47 @@
-document.getElementById('button1').addEventListener('click', loadCustomer);
-document.getElementById('button2').addEventListener('click', loadCustomers);
+const posts = [
+  { title: 'Post One', body: 'This is post one.' },
+  { title: 'Post Two', body: 'This is post two.' },
+];
 
-function loadCustomer(e) {
-  const xhr = new XMLHttpRequest();
+// function createPost() {
+//   setTimeout((post) => {
+//     posts.push(post);
+//   }, 2000);
+// }
 
-  xhr.open('GET', 'customer.json', true);
+// function getPosts() {
+//   setTimeout(() => {
+//     let output = '';
 
-  xhr.onload = function () {
-    if (this.status === 200) {
-      // console.log(this.responseText);
+//     posts.forEach((post) => {
+//       output += `<li>${post.title}</li>`;
+//     });
 
-      const customer = JSON.parse(this.responseText);
+//     document.body.innerHTML = output;
+//   }, 1000);
+// }
 
-      const output = `
-      <ul>
-      <li>ID: ${customer.id}</li>
-      <li>Name: ${customer.name}</li>
-      <li>Company: ${customer.company}</li>
-      <li>Phone: ${customer.phone}</li>
-      </ul>`;
+// createPost({ title: 'Post Three', body: 'This is post three.' });
 
-      document.getElementById('customer').innerHTML = output;
-    }
-  };
+// getPosts();
 
-  xhr.send();
+function createPost(post, callback) {
+  setTimeout(() => {
+    posts.push(post);
+    callback();
+  }, 2000);
 }
 
-function loadCustomers(e) {
-  const xhr = new XMLHttpRequest();
+function getPosts() {
+  setTimeout(() => {
+    let output = '';
 
-  xhr.open('GET', 'customers.json', true);
+    posts.forEach((post) => {
+      output += `<li>${post.title}</li>`;
+    });
 
-  xhr.onload = function () {
-    if (this.status === 200) {
-      // console.log(this.responseText);
-
-      const customers = JSON.parse(this.responseText);
-
-      let output = '';
-
-      customers.forEach((customer) => {
-        output += `
-        <ul>
-        <li>ID: ${customer.id}</li>
-        <li>Name: ${customer.name}</li>
-        <li>Company: ${customer.company}</li>
-        <li>Phone: ${customer.phone}</li>
-        </ul>`;
-      });
-
-      document.getElementById('customers').innerHTML = output;
-    }
-  };
-
-  xhr.send();
+    document.body.innerHTML = output;
+  }, 1000);
 }
+
+createPost({ title: 'Post Three', body: 'This is post three.' }, getPosts);
