@@ -1,59 +1,42 @@
-const posts = [
-  { title: 'Post One', body: 'This is post one.' },
-  { title: 'Post Two', body: 'This is post two.' },
-];
+// const sayHello = function () {
+//   console.log('Hello');
+// };
 
-// function createPost() {
-//   setTimeout((post) => {
-//     posts.push(post);
-//   }, 2000);
-// }
+// const sayHello = () => {
+//   console.log('Hello');
+// };
 
-// function getPosts() {
-//   setTimeout(() => {
-//     let output = '';
+// One-line function doesn't need braces
+// const sayHello = () => console.log('HELLO');
 
-//     posts.forEach((post) => {
-//       output += `<li>${post.title}</li>`;
-//     });
+// One-line returns
+// const sayHello = () => 'Hello';
 
-//     document.body.innerHTML = output;
-//   }, 1000);
-// }
+// Return object
+// const sayHello = () => ({ msg: 'Hello' });
 
-// createPost({ title: 'Post Three', body: 'This is post three.' });
+// Single param doesn't need parenthesis (but Prettier thinks otherwise)
+// const sayHello = (name) => console.log(`Hello, ${name}`);
 
-// getPosts();
+// Multiple params need parenthesis
+// const sayHello = (firstName, lastName) =>
+//   console.log(`Hello, ${firstName} ${lastName}`);
 
-function createPost(post) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      posts.push(post);
+// console.log(sayHello());
+// sayHello('Yuliia', 'Horbenko');
 
-      const error = false;
-      if (!error) {
-        resolve();
-      } else {
-        reject('Something went wrong');
-      }
-    }, 2000);
-  });
-}
+const users = ['Nathan', 'John', 'Will'];
 
-function getPosts() {
-  setTimeout(() => {
-    let output = '';
+// const nameLengths = users.map(function (name) {
+//   return name.length;
+// });
 
-    posts.forEach((post) => {
-      output += `<li>${post.title}</li>`;
-    });
+// Shorter
+// const nameLengths = users.map((name) => {
+//   return name.length;
+// });
 
-    document.body.innerHTML = output;
-  }, 1000);
-}
+// Shortest
+const nameLengths = users.map((name) => name.length);
 
-createPost({ title: 'Post Three', body: 'This is post three.' })
-  .then(getPosts)
-  .catch(function () {
-    console.log('Something went wrong...');
-  });
+console.log(nameLengths);
