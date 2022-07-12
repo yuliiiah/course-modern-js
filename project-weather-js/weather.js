@@ -13,7 +13,7 @@ class Weather {
 
     const responseData = await response.json();
 
-    return responseData.current;
+    return responseData;
   }
 
   // Change weather location
