@@ -1,32 +1,30 @@
 let re;
-re = /hello/; // i = case insensitive
-re = /hello/i; // i = case insensitive
-// re = /hello/g; // g = global search
 
-// console.log(re);
-// console.log(re.source);
+// Literal characters
+re = /hello/;
+re = /hello/i;
 
-// exec() - Return results in an array or null
-// const result = re.exec('hello world');
+// Metacharacter symbols
+re = /^h/i; // Must start with
+re = / world$/i; // Must end with
+re = /^hello$/i; // Must begin and end with
+re = /h.llo/i; // Matches any ONE character
+re = /h*llo/i; // Matches character 0 or more times
+re = /gre?a?y/i; // Optional character
+re = /gre?a?y\?/i; // Escape character
 
-// console.log(result);
-// console.log(result[0]);
-// console.log(result.index);
-// console.log(result.input);
+// String to match
+const string = 'Gray?';
+// Log results
+const result = re.exec(string);
+console.log(result);
 
-// test() - Return true or false
-// const result = re.test('Hello');
+function reTest(re, string) {
+  if (re.test(string)) {
+    console.log(`The string matches ${re.source} `);
+  } else {
+    console.log(`The string does not match ${re.source} `);
+  }
+}
 
-// match() - Return result array or null
-// const str = 'Hello There';
-// const result = str.match(re);
-
-// search() - Return index of the first match, if not found returns -1
-// const str = 'Yo Hello There';
-// const result = str.search(str);
-
-// replace() - Return a new string with some or all matches of a pattern
-const str = 'Hello There';
-const newStr = str.replace(re, 'Hi');
-
-console.log(newStr);
+reTest(re, string);
