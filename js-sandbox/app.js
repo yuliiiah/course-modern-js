@@ -1,31 +1,28 @@
-// async function myFunc() {
-//   const promise = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve('Hello');
-//     }, 1000);
-//   });
+const user = { email: 'jdoe@gmail.com' };
 
-//   const err = false;
+try {
+  // Produce a ReferenceError
+  // myFunction();
+  // Produce a TypeError
+  // null.myFunction();
+  // Produce a SyntaxError
+  // console.log(eval('Hello World'));
+  // Produce a URIError
+  // decodeURIComponent('%');
 
-//   if (!err) {
-//     const res = await promise; // Wait until the promise is resolved
-//     return res;
-//   } else {
-//     await Promise.reject(new Error('Something went wrong...'));
-//   }
-// }
-
-// myFunc()
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));
-
-async function getUsers() {
-  // Await the response of the fetch call
-  const response = await fetch('https://jsonplaceholder.typicode.com/users');
-  // Only proceed once the response is resolved
-  const data = await response.json();
-  // Only proceed once the second promise is resolved
-  return data;
+  if (!user.name) {
+    // throw 'User has no name';
+    throw new SyntaxError('User has no name');
+  }
+} catch (error) {
+  console.log(`User Error: ${error.message}`);
+  // console.log(error);
+  // console.log(error.message);
+  // console.log(error.name);
+  // console.log(error.name);
+  // console.log(error instanceof ReferenceError);
+} finally {
+  console.log('Finally runs regardless of the result...');
 }
 
-getUsers().then((users) => console.log(users));
+console.log('Program continues...');
