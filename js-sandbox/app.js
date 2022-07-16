@@ -1,56 +1,53 @@
-function EventObserver() {
-  this.observers = [];
-}
+const User = function (name) {
+  this.name = name;
+  this.chatroom = null;
+};
 
-EventObserver.prototype = {
-  subscribe: function (fn) {
-    this.observers.push(fn);
-    console.log(`You are now subscribed to ${fn.name}`);
+User.prototype = {
+  send: function (message, to) {
+    this.chatroom.send(message, this, to);
   },
-  unsubscribe: function (fn) {
-    // Filter out from the list whatever matches the callback function. If there is no match, the callback gets to stay on the list. The filter returns a new list and reassigns the list of observers.
-    this.observers = this.observers.filter((item) => {
-      if (item !== fn) {
-        return item;
+  receive: function (message, from) {
+    console.log(`${from.name} to ${this.name}: ${message}`);
+  },
+};
+
+const Chatroom = function () {
+  let users = {}; // List of users
+
+  return {
+    register: function (user) {
+      users[user.name] = user;
+      user.chatroom = this;
+    },
+    send: function (message, from, to) {
+      if (to) {
+        // Single user message
+        to.receive(message, from);
+      } else {
+        // Mass message
+        for (key in users) {
+          if (users[key] !== from) {
+            users[key].receive(message, from);
+          }
+        }
       }
-    });
-    console.log(`You are now unsubscribed from ${fn.name}`);
-  },
-  fire: function () {
-    this.observers.forEach((item) => {
-      item.call();
-    });
-  },
+    },
+  };
 };
 
-const click = new EventObserver();
+const brad = new User('Brad');
+const jeff = new User('Jeff');
+const dan = new User('Dan');
+const sarah = new User('Sarah');
 
-// Event listeners
-document.querySelector('.sub-ms').addEventListener('click', function () {
-  click.subscribe(getCurrMilliseconds);
-});
+const chatroom = new Chatroom();
 
-document.querySelector('.unsub-ms').addEventListener('click', function () {
-  click.unsubscribe(getCurrMilliseconds);
-});
+chatroom.register(brad);
+chatroom.register(jeff);
+chatroom.register(dan);
+chatroom.register(sarah);
 
-document.querySelector('.sub-s').addEventListener('click', function () {
-  click.subscribe(getCurrSeconds);
-});
-
-document.querySelector('.unsub-s').addEventListener('click', function () {
-  click.unsubscribe(getCurrSeconds);
-});
-
-document.querySelector('.fire').addEventListener('click', function () {
-  click.fire();
-});
-
-// Click Handler
-const getCurrMilliseconds = function () {
-  console.log(`Current Milliseconds: ${new Date().getMilliseconds()}`);
-};
-
-const getCurrSeconds = function () {
-  console.log(`Current Seconds: ${new Date().getSeconds()}`);
-};
+brad.send('Hello Jeff', jeff);
+sarah.send('Hello Brad, you are weird!', brad);
+jeff.send('Hello everyone');
