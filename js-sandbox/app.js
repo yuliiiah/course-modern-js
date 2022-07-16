@@ -1,51 +1,56 @@
-function MemberFactory() {
-  this.createMember = function (name, type) {
-    let member;
-
-    if (type === 'simple') {
-      member = new SimpleMembership(name);
-    } else if (type === 'standard') {
-      member = new StandardMembership(name);
-    } else if (type === 'super') {
-      member = new SuperMembership(name);
-    }
-
-    member.type = type;
-
-    member.define = function () {
-      console.log(`${this.name} (${this.type}): ${this.cost}`);
-    };
-
-    return member;
-  };
+function EventObserver() {
+  this.observers = [];
 }
 
-const SimpleMembership = function (name) {
-  this.name = name;
-  this.cost = '$5';
+EventObserver.prototype = {
+  subscribe: function (fn) {
+    this.observers.push(fn);
+    console.log(`You are now subscribed to ${fn.name}`);
+  },
+  unsubscribe: function (fn) {
+    // Filter out from the list whatever matches the callback function. If there is no match, the callback gets to stay on the list. The filter returns a new list and reassigns the list of observers.
+    this.observers = this.observers.filter((item) => {
+      if (item !== fn) {
+        return item;
+      }
+    });
+    console.log(`You are now unsubscribed from ${fn.name}`);
+  },
+  fire: function () {
+    this.observers.forEach((item) => {
+      item.call();
+    });
+  },
 };
 
-const StandardMembership = function (name) {
-  this.name = name;
-  this.cost = '$15';
-};
+const click = new EventObserver();
 
-const SuperMembership = function (name) {
-  this.name = name;
-  this.cost = '$25';
-};
-
-const members = [];
-const factory = new MemberFactory();
-
-members.push(factory.createMember('John Doe', 'simple'));
-members.push(factory.createMember('Jane Doe', 'standard'));
-members.push(factory.createMember('Mary Jane', 'super'));
-members.push(factory.createMember('Jill Pill', 'super'));
-members.push(factory.createMember('Asshole', 'simple'));
-
-// console.log(members);
-
-members.forEach((member) => {
-  member.define();
+// Event listeners
+document.querySelector('.sub-ms').addEventListener('click', function () {
+  click.subscribe(getCurrMilliseconds);
 });
+
+document.querySelector('.unsub-ms').addEventListener('click', function () {
+  click.unsubscribe(getCurrMilliseconds);
+});
+
+document.querySelector('.sub-s').addEventListener('click', function () {
+  click.subscribe(getCurrSeconds);
+});
+
+document.querySelector('.unsub-s').addEventListener('click', function () {
+  click.unsubscribe(getCurrSeconds);
+});
+
+document.querySelector('.fire').addEventListener('click', function () {
+  click.fire();
+});
+
+// Click Handler
+const getCurrMilliseconds = function () {
+  console.log(`Current Milliseconds: ${new Date().getMilliseconds()}`);
+};
+
+const getCurrSeconds = function () {
+  console.log(`Current Seconds: ${new Date().getSeconds()}`);
+};
