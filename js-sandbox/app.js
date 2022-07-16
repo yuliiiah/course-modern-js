@@ -1,55 +1,42 @@
-// Maps = key-value pairs, can use ANY type as a key or a value
+// SETS - Store unique values of any type
+const set1 = new Set();
 
-const map1 = new Map();
+// Add values to set
+set1.add(100);
+set1.add('string');
+set1.add({ name: 'John' });
+set1.add(true);
+set1.add(100);
 
-// Set Keys
-const key1 = 'some string',
-  key2 = {},
-  key3 = function () {};
+const set2 = new Set([1, true, 'string']);
 
-// Set map values by key
-map1.set(key1, 'Value of key1');
-map1.set(key2, 'Value of key2');
-map1.set(key3, 'Value of key3');
+// console.log(set1);
+// console.log(set2);
 
-// Get values by key
-// console.log(map1.get(key1), map1.get(key2), map1.get(key3));
+// Get count
+// console.log(set1.size);
 
-// Count values
-// console.log(map1.size);
+// Check values
+// console.log(set1.has(100));
+// console.log(set1.has(50 + 50));
+// console.log(set1.has({ name: 'John' }));
 
-// Iterating maps
+// Delete from set
+// set1.delete(100);
+// console.log(set1);
 
-// Loop using for...of to get keys and values
-// for (let [key, value] of map1) {
-//   console.log(`${key} = ${value}`);
+// Iterate through sets
+
+// For...of
+// for (let item of set1) {
+//   console.log(item);
 // }
 
-// Iterate keys only
-// for (let key of map1.keys()) {
-//   console.log(`${key}`);
-// }
-
-// Iterate values only
-// for (let value of map1.values()) {
-//   console.log(`${value}`);
-// }
-
-// Loop with forEach
-// map1.forEach((value, key) => {
-//   console.log(`${key} = ${value}`);
+// ForEach
+// set1.forEach((value) => {
+//   console.log(value);
 // });
 
-// Convert to arrays
-
-// Create an array of key value pairs
-// const keyValArr = Array.from(map1);
-// console.log(keyValArr);
-
-// Create an array of values
-// const valArr = Array.from(map1.values());
-// console.log(valArr);
-
-// Create an array of keys
-const keyArr = Array.from(map1.keys());
-console.log(keyArr);
+// Convert set to array
+const setArr = Array.from(set1);
+console.log(setArr);
