@@ -2,6 +2,10 @@ a {
   text-decoration: none;
 }
 
+#posts::after {
+  display: none;
+}
+
 .delete {
   color: red;
 }
