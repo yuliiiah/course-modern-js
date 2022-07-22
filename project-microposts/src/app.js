@@ -5,6 +5,8 @@ import { ui } from './ui';
 document.addEventListener('DOMContentLoaded', getPosts);
 // Listen for add post
 document.querySelector('.post-submit').addEventListener('click', submitPost);
+// Listen for delete
+document.querySelector('#posts').addEventListener('click', deletePost);
 
 // Get posts
 function getPosts() {
@@ -33,4 +35,21 @@ function submitPost() {
       getPosts();
     })
     .catch((err) => console.log(err));
+}
+
+// Delete post
+function deletePost(event) {
+  event.preventDefault();
+  if (event.target.parentElement.classList.contains('delete')) {
+    const id = event.target.parentElement.dataset.id;
+    if (confirm('Are you sure?')) {
+      http
+        .delete(`http://localhost:3000/posts/${id}`)
+        .then((data) => {
+          ui.showAlert('Post Removed!', 'alert alert-warning');
+          getPosts();
+        })
+        .catch((err) => console.log(err));
+    }
+  }
 }

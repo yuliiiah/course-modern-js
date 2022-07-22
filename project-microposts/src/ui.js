@@ -62,7 +62,7 @@ class UI {
 
   clearFields() {
     this.titleInput.value = '';
-    this.body.value = '';
+    this.bodyInput.value = '';
   }
 }
 
